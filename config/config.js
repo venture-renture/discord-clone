@@ -1,6 +1,12 @@
-const config = {};
+const mongoose = require('mongoose');
+const config = require('./config');
 
-config.port = process.env.PORT || 5000;
-config.dbURL = process.env.DATABASEURL || "mongodb://localhost/minicord";
+config.dbURL = "mongodb+srv://admin:spacecadet@cluster0.kqtpmcc.mongodb.net/?retryWrites=true&w=majority"
 
-module.exports = config;
+mongoose.connect('mongodb+srv://admin:spacecadet@cluster0.kqtpmcc.mongodb.net/?retryWrites=true&w=majority', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useCreateIndex: true,
+  useFindAndModify: false
+}).then(() => console.log('MongoDB connected'))
+  .catch((err) => console.log('DB Connection Error: ', err.message));
